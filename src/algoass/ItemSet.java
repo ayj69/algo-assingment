@@ -91,10 +91,10 @@ public class ItemSet<T> implements Algo{
 		int itemNumber = Algo.getitemnumber(0, 1000000,"Pls enter your number of item : ");
 		is = new ItemSet<Item<Integer>>(binSize,itemNumber,itemArray);
 		for (int i = 0;i < is.numberOfItem /4 ;i++) {
-			is.itemList.add(new Item<Integer>((int)((Math.random())*100)+1));
+			is.itemList.add(new Item<Integer>(Algo.autoGenInt(0, binSize/4*3)));
 		}
-		for (int i = 0;i < is.numberOfItem / 4 * 3;i++) {
-			is.itemList.add(new Item<Integer>((int)((Math.random())*10)+1));
+		for (int i = 0;i < (is.numberOfItem / 4 * 3) + (is.numberOfItem % 4);i++) {
+			is.itemList.add(new Item<Integer>(Algo.autoGenInt(0, binSize/4)));
 		}
         System.out.print(is.toString());
 		return is;

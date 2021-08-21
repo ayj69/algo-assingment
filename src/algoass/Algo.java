@@ -12,6 +12,10 @@ import java.util.Stack;
 
 public interface Algo {
 	
+	public static int autoGenInt(int min, int max) {
+		Random ran = new Random();
+		return ran.nextInt(max + 1) + min ;
+	}
 	
 	//next fit method
 	public static <E extends Number & Comparable<E>> void nextFit(int binsize,int itemnumber,ArrayList<Item<E>> itemList) {
