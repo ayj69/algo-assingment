@@ -103,21 +103,22 @@ public interface Algo {
 	    }
 	    
 	    //read the file content then print it
-    public static void readFile(File ads) {
-	    	
-	    	 try {
-			      File myObj = new File("src/algoass/Data/data1");
-			      Scanner myReader = new Scanner(myObj);
-			      while (myReader.hasNextLine()) {
-			        String data = myReader.nextLine();
-			        System.out.println(data);
-			      }
-			      myReader.close();
-			    } catch (FileNotFoundException e) {
-			      System.out.println("An error occurred.");
-			      e.printStackTrace();
-			    }
-			  }
+	public static boolean readFile(File ads) {
+    	
+   	 try {
+		      File myObj = new File(ads.getAbsolutePath());
+		      Scanner myReader = new Scanner(myObj);
+		      while (myReader.hasNextLine()) {
+		        int data = myReader.nextInt();
+		      }
+		      myReader.close();
+		    } catch (Exception e) {
+		      System.out.println(ads.getName() + "might have some error pls pick another file");//get back to selection then disable the choice
+		      return false;
+		    }
+   	 
+   	 return true;
+		  }
 	    
 	    //read the file content the return an array list contain the integer
     public static <E> ArrayList<Item<Integer>> readDataFile(File ads) {

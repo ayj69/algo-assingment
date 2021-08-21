@@ -101,17 +101,22 @@ public class ItemSet<T> implements Algo{
 		
 	}
 	
-	public  ItemSet<Item<Integer>> getItemListScanFile() {
+public  ItemSet<Item<Integer>> getItemListScanFile() {
 		
 		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
 		ArrayList<File> file = new ArrayList<File>(Algo.readFilePath("src/algoass/data"));
-        for(int i = 0; i<file.size();i++) {
-        	System.out.print(file.get(i).getName()+"lol\n");
-        }
-        int fileChoice = Algo.getitemnumber(1, file.size(), "pls enter your file choice : ");
+		int fileChoice = 0;
+		fileChoice = Algo.getitemnumber(1, file.size(), "pls enter your another file choice : ");
         fileChoice -= 1;
         System.out.println("your choice is : " + file.get(fileChoice).getName());
-		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>(Algo.readDataFile(file.get(fileChoice)));
+        while(!(Algo.readFile(file.get(fileChoice)))) {
+        	fileChoice = Algo.getitemnumber(1, file.size(), "pls enter your another file choice : ");
+            fileChoice -= 1;
+            System.out.println("your choice is : " + file.get(fileChoice).getName());
+        }
+		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>();
+
+		itemArray.addAll(Algo.readDataFile(file.get(fileChoice)));
         is = new ItemSet<Item<Integer>>(Algo.findMax(itemArray).size,itemArray.size(),itemArray);
         System.out.print(is.toString());
         System.out.println("Automaticaly set the maximun bin size to " +Algo.findMax(itemArray));
