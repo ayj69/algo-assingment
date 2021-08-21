@@ -1,14 +1,16 @@
 package algoass;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
 
-public class ItemSet<T>{
+public class ItemSet<T> implements Algo{
 	//create a concrete item class and put it in array list
 	//so in this object it should have only concrete item 
 	//for example [Integer,Double,Long]
 	int numberOfItem ;
+	int binSize;
 	ArrayList<T> itemList = new ArrayList<T>();
 	
 	public ItemSet() {
@@ -27,12 +29,25 @@ public class ItemSet<T>{
 		this.numberOfItem = numberOfItem;
 		this.itemList = list;
 	}
-		
+	
+	public ItemSet(int binsize , int numberOfItem,ArrayList<T> list) {
+		this.numberOfItem = numberOfItem;
+		this.itemList = list;
+		this.binSize = binsize;
+	}
+	
+	public int getBinSize() {
+		return binSize;
+	}
+
+	public void setBinSize(int binSize) {
+		this.binSize = binSize;
+	}
+	
 	public String toString() {
 		return "There are " + this.numberOfItem + " item in the set right now.\n" +
 				"All item = " + (itemList.iterator().hasNext()?itemList.toString(): "no item in set")+ " in teh set.\n";
 	}
-	
 	
 	//increasing sort//this shit will not work
 	//todo: make a BETTER sorting system..//postpone postpone
@@ -52,6 +67,59 @@ public class ItemSet<T>{
 		}
 		return list;
 	}
+	
+	public ItemSet<Item<Integer>> getItemListManual() {
+		
+		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
+		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>();
+		int binSize = Algo.getitemnumber(0, 1000000,"Pls enter your Bin size : ");
+		int itemNumber = Algo.getitemnumber(0, 1000000,"Pls enter your number of item : ");
+		is = new ItemSet<Item<Integer>>(binSize,itemNumber,itemArray);
+		for (int i = 0;i < is.numberOfItem;i++) {
+			int size = Algo.getitemnumber(0, is.binSize,"pls enter your size of the item : ");
+			is.itemList.add(new Item<Integer>(size));
+		}
+		return is;
+		
+	}
+	
+	public  ItemSet<Item<Integer>> getItemListAutoGen() {
+		
+		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
+		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>();
+		int binSize = Algo.getitemnumber(0, 1000000,"Pls enter your Bin size : ");
+		int itemNumber = Algo.getitemnumber(0, 1000000,"Pls enter your number of item : ");
+		is = new ItemSet<Item<Integer>>(binSize,itemNumber,itemArray);
+		for (int i = 0;i < is.numberOfItem /4 ;i++) {
+			is.itemList.add(new Item<Integer>((int)((Math.random())*100)+1));
+		}
+		for (int i = 0;i < is.numberOfItem / 4 * 3;i++) {
+			is.itemList.add(new Item<Integer>((int)((Math.random())*10)+1));
+		}
+        System.out.print(is.toString());
+		return is;
+		
+	}
+	
+	public  ItemSet<Item<Integer>> getItemListScanFile() {
+		
+		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
+		ArrayList<File> file = new ArrayList<File>(Algo.readFilePath("src/algoass/data"));
+        for(int i = 0; i<file.size();i++) {
+        	System.out.print(file.get(i).getName()+"lol\n");
+        }
+        int fileChoice = Algo.getitemnumber(1, file.size(), "pls enter your file choice : ");
+        fileChoice -= 1;
+        System.out.println("your choice is : " + file.get(fileChoice).getName());
+		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>(Algo.readDataFile(file.get(fileChoice)));
+        is = new ItemSet<Item<Integer>>(Algo.findMax(itemArray).size,itemArray.size(),itemArray);
+        System.out.print(is.toString());
+        System.out.println("Automaticaly set the maximun bin size to " +Algo.findMax(itemArray));
+        
+		return is;
+		
+	}
+	
 	
 }
 

@@ -36,16 +36,6 @@ public class Item <T extends Number & Comparable<T>> implements Comparable<Item<
 		return getSize().compareTo(o.getSize());
 	}
 	
-	public boolean checkSum(ArrayList<Bin> list) {
-		int total = 0;
-		System.out.print(size);
-		for(int i = 0;i < list.size();i++) {
-			total += list.get(i).size;
-			}
-		if (total > (int)size)
-			return false;
-		else 
-			return true;
-	}
+	
 
 }
