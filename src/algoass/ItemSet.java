@@ -77,7 +77,7 @@ public class ItemSet<T> extends Item implements Algo{
 	}
 	
 	//Sort the array list based on descending order
-	public <E extends Comparable<E>> ArrayList<E> shittySort(ArrayList<E> list){
+	public <E extends Comparable<E>> ArrayList<E> simpleSort(ArrayList<E> list){
 		//find minimum then replace it
 		//loop 1
 		for (int i=0;i < list.size();i++) {
@@ -100,13 +100,13 @@ public class ItemSet<T> extends Item implements Algo{
 		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
 		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>();
 		
-		int binSize = Algo.getitemnumber(0, 1000000,"Pls enter your Bin size : ");
-		int itemNumber = Algo.getitemnumber(0, 1000000,"Pls enter your number of item : ");
+		int binSize = Algo.getUserInput(0, 1000000,"Pls enter your Bin size : ");
+		int itemNumber = Algo.getUserInput(0, 1000000,"Pls enter your number of item : ");
 		
 		is = new ItemSet<Item<Integer>>(binSize,itemNumber,itemArray);
 		
 		for (int i = 0;i < is.getNumberOfItem();i++) {
-			int size = Algo.getitemnumber(0, is.binSize,"pls enter your size of the item : ");
+			int size = Algo.getUserInput(0, is.binSize,"pls enter your size of the item : ");
 			is.getItemList().add(new Item<Integer>(size));
 		}
 		
@@ -120,8 +120,8 @@ public class ItemSet<T> extends Item implements Algo{
 		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
 		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>();
 		
-		int binSize = Algo.getitemnumber(0, 1000000,"Pls enter your Bin size : ");
-		int itemNumber = Algo.getitemnumber(0, 1000000,"Pls enter your number of item : ");
+		int binSize = Algo.getUserInput(0, 1000000,"Pls enter your Bin size : ");
+		int itemNumber = Algo.getUserInput(0, 1000000,"Pls enter your number of item : ");
 		
 		is = new ItemSet<Item<Integer>>(binSize,itemNumber,itemArray);
 		
@@ -144,13 +144,13 @@ public class ItemSet<T> extends Item implements Algo{
 		
 		int fileChoice = 0;
 		
-		fileChoice = Algo.getitemnumber(1, file.size(), "Pls enter your another file choice : ");
+		fileChoice = Algo.getUserInput(1, file.size(), "Pls enter your another file choice : ");
         fileChoice -= 1;
         
         System.out.println("Your choice is : " + file.get(fileChoice).getName());
         
         while(!(Algo.readFile(file.get(fileChoice)))) {
-        	fileChoice = Algo.getitemnumber(1, file.size(), "Pls enter your another file choice : ");
+        	fileChoice = Algo.getUserInput(1, file.size(), "Pls enter your another file choice : ");
             fileChoice -= 1;
             System.out.println("Your choice is : " + file.get(fileChoice).getName());
         }

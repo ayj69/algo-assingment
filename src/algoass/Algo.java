@@ -176,7 +176,7 @@ public interface Algo {
 		}
 	   
     //get user input and validate it using the range given also passing a message to print
-	public static int getitemnumber(int min,int max,String str) {
+	public static int getUserInput(int min,int max,String str) {
 			
 			int number = 0;
 			boolean errorFlag = false;
