@@ -1,7 +1,5 @@
 package algoass;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -10,38 +8,59 @@ public class Menu implements Algo{
 	public static void main(String arg[]) {
 		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
 		
-		System.out.println("Welcome to bin packing problem!");
+		System.out.println("Welcome to truck loading problem!");
 		
-		System.out.print("then pls decide if you want to enter the number of the item one by one or generate it automaticaly: \n");
-		System.out.print("\t\t1:i will do it by myself.\n");
-		System.out.print("\t\t2:fine, i will let computer generate it for me.\n");
-		System.out.print("\t\t3:fine, i will let computer read from external file\n");
+		System.out.print("then pls decide if you want to enter the number of the item one by one or generate it automaticaly: \n" + 
+						 "\t\t1:Menual input.\n" +
+						 "\t\t2:Computer generate.\n" +
+						 "\t\t3:Read from file\n");
 		
-		int choice = Algo.getitemnumber(1, 3, "pls enter your choice : ");
+		int choice = Algo.getitemnumber(1, 3, "Pls enter your choice : ");
 		
-		if (choice == 1) {
-			is = is.getItemListManual();
-		}else if(choice == 2) {
-			is = is.getItemListAutoGen();
-		}else if(choice == 3) {
-			is = is.getItemListScanFile();
+		switch (choice) {
+		  case 1:
+			is = is.getItemListManual();break;
+		  case 2:
+			is = is.getItemListAutoGen();break;
+		  case 3:
+			is = is.getItemListScanFile();break;
 		}
 		
-		System.out.println("your item list is : " + is.itemList.toString());
+		System.out.println("\nYour item list is : " + is.getItemList().toString() + "\n");
+
 		
-		System.out.print("pls chose a method to arrange your set :\n");
-		System.out.print("\t\t1.first fit decreasing\n");
-		System.out.print("\t\t2.next fit\n");
+		System.out.print("pls chose a method to arrange your set :\n" + 
+				"\t\t1.First Fit Decreasing\n" + 
+				"\t\t2.Next Fit\n");
 		
-		choice = Algo.getitemnumber(1, 2,"pls enter your choice: ");
+		choice = Algo.getitemnumber(1, 2,"Pls enter your choice: ");
 		
 		if (choice == 1 ) { 
-			is.shittySort(is.itemList);
-			System.out.println("Sorted list = " + is.itemList.toString());
-			Algo.ffd(is.binSize,is.numberOfItem,is.itemList);
-		}else if(choice == 2 ) { 
-			Algo.nextFit(is.binSize,is.numberOfItem,is.itemList);
 			
+	        long startTime = System.currentTimeMillis();
+			is.shittySort(is.getItemList());
+	        long sortEndTime = System.currentTimeMillis();
+	        
+			System.out.println("\nSorted list = " + is.getItemList().toString() + "\n");
+			
+			Algo.ffd(is.getBinSize(),is.getNumberOfItem(),is.getItemList());
+			
+	        long endTime = System.currentTimeMillis();
+	        
+	        long timeElapsed = endTime - startTime;
+	        long sortTimeElapsed = sortEndTime - startTime;
+	        
+	        System.out.println("Sorted in milliseconds: " + sortTimeElapsed);
+	        System.out.println("Packed in milliseconds: " + timeElapsed);
+	        
+		}else if(choice == 2 ) { 
+			
+	        long startTime = System.currentTimeMillis();
+			Algo.nextFit(is.getBinSize(),is.getNumberOfItem(),is.getItemList());
+			long endTime = System.currentTimeMillis();
+			
+	        long timeElapsed = endTime - startTime;
+	        System.out.println("Packed in milliseconds: " + timeElapsed);
 		}
 		
 		Scanner s = new Scanner(System.in);

@@ -1,11 +1,12 @@
 package algoass;
 
-import java.util.ArrayList;
 
 public class Item <T extends Number & Comparable<T>> implements Comparable<Item<T>>{
 	
+	//data field
 	T size;
 	
+	//constructor
 	public Item() {
 		this.size = null;
 	}
@@ -14,10 +15,7 @@ public class Item <T extends Number & Comparable<T>> implements Comparable<Item<
 		this.size = size;
 	}
 	
-	public String toString() {
-		return "" + this.size;
-	}
-	
+	//getter and setter
 	public T getSize() {
 		return size;
 	}
@@ -26,16 +24,22 @@ public class Item <T extends Number & Comparable<T>> implements Comparable<Item<
 		this.size = size;
 	}
 	
-	public void show() {
-		System.out.println(this.size.getClass().getName());
-		return ;
-	}
+	//method
+
 
 	@Override
 	public int compareTo(Item<T> o) {
-		return getSize().compareTo(o.getSize());
+		if (getSize().intValue() > o.getSize().intValue())
+			return 1;
+		else if (getSize().intValue() < o.getSize().intValue())
+			return -1;
+		else
+			return 0;
 	}
 	
-	
+	public String toString() {
+		return "" + this.size;
+	}
+
 
 }
