@@ -144,13 +144,13 @@ public class ItemSet<T> extends Item implements Algo{
 		
 		int fileChoice = 0;
 		
-		fileChoice = Algo.getUserInput(1, file.size(), "Pls enter your another file choice : ");
+		fileChoice = Algo.getUserInput(1, file.size(), "Pls enter your file choice : ");
         fileChoice -= 1;
         
         System.out.println("Your choice is : " + file.get(fileChoice).getName());
         
         while(!(Algo.readFile(file.get(fileChoice)))) {
-        	fileChoice = Algo.getUserInput(1, file.size(), "Pls enter your another file choice : ");
+        	fileChoice = Algo.getUserInput(1, file.size(), "Pls enter another file choice : ");
             fileChoice -= 1;
             System.out.println("Your choice is : " + file.get(fileChoice).getName());
         }
