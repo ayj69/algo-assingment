@@ -100,8 +100,8 @@ public class ItemSet<T> extends Item implements Algo{
 		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
 		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>();
 		
-		int binSize = Algo.getUserInput(0, 1000000,"Pls enter your Bin size : ");
-		int itemNumber = Algo.getUserInput(0, 1000000,"Pls enter your number of item : ");
+		int binSize = Algo.getUserInput(1, 1000000,"Pls enter your Bin size : ");
+		int itemNumber = Algo.getUserInput(1, 1000000,"Pls enter your number of item : ");
 		
 		is = new ItemSet<Item<Integer>>(binSize,itemNumber,itemArray);
 		
@@ -120,8 +120,8 @@ public class ItemSet<T> extends Item implements Algo{
 		ItemSet<Item<Integer>> is = new ItemSet<Item<Integer>>();
 		ArrayList<Item<Integer>> itemArray = new ArrayList<Item<Integer>>();
 		
-		int binSize = Algo.getUserInput(0, 1000000,"Pls enter your Bin size : ");
-		int itemNumber = Algo.getUserInput(0, 1000000,"Pls enter your number of item : ");
+		int binSize = Algo.getUserInput(1, 1000000,"Pls enter your Bin size : ");
+		int itemNumber = Algo.getUserInput(1, 1000000,"Pls enter your number of item : ");
 		
 		is = new ItemSet<Item<Integer>>(binSize,itemNumber,itemArray);
 		
