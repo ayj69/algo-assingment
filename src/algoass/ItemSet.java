@@ -67,13 +67,8 @@ public class ItemSet<T> extends Item implements Algo{
 	
 	
 	public String toString() {
-		String str = "There are " + this.getItemList().size() + " item in the set right now.\n";
-		
-		for(int i = 0; i < getItemList().size();i++) {
-				System.out.println("Bin " + (i+1) + " = " + getItemList().get(i).toString());
-		}
-		
-		return str;
+		return "There are " + this.numberOfItem + " item in the set right now.\n" +
+				"All item = " + (itemList.iterator().hasNext()?itemList.toString(): "no item in set")+ "\n";
 	}
 	
 	//Sort the array list based on descending order
@@ -160,7 +155,7 @@ public class ItemSet<T> extends Item implements Algo{
 		itemArray.addAll(Algo.readDataFile(file.get(fileChoice)));
         is = new ItemSet<Item<Integer>>(Algo.findMax(itemArray).size,itemArray.size(),itemArray);
         
-        System.out.print(is.toString());
+        System.out.print("\n" + is.toString() + "\n");
         System.out.println("Automaticaly set the maximun bin size to " +Algo.findMax(itemArray));
         
 		return is;
